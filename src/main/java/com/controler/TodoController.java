@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.*;
 
 import com.entity.Todo;
-import com.service.ITodo;
+import com.service.ITodoService;
 
 @RestController
 @RequestMapping("/api")
@@ -18,9 +18,14 @@ import com.service.ITodo;
 public class TodoController {
 
     @Autowired
-    ITodo todoRepository;
+    ITodoService todoRepository;
 
-    @GetMapping("/listTodos")
+    public TodoController(ITodoService todoRepository) {
+		super();
+		this.todoRepository = todoRepository;
+	}
+
+	@GetMapping("/listTodos")
     public List<Todo> getAllTodos() {
        
         return todoRepository.getAllTodos();
@@ -55,4 +60,10 @@ public class TodoController {
     public void deleteTodo(@PathVariable("id") Long id) {
         todoRepository.deleteTodo(id);
     }
+
+
+	public void setTodoRepository(ITodoService todoRepository) {
+		this.todoRepository = todoRepository;
+	}
+    
 }

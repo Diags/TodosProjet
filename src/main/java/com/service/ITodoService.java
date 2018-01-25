@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.entity.Todo;
 @Service
-public interface ITodo {
+public interface ITodoService {
 	public List<Todo> getAllTodos();
 	public Todo createTodo( Todo todo);
 	public ResponseEntity<Todo> getTodoById( Long id);

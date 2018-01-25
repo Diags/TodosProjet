@@ -11,9 +11,13 @@ import com.entity.Todo;
 import com.repo.TodoRepository;
 @Service
 @Transactional
-public class TodoImpl implements ITodo{
+public class TodoImpl implements ITodoService{
 	@Autowired
 private TodoRepository todoRepository;
+	public TodoImpl(TodoRepository todoRepository) {
+		super();
+		this.todoRepository = todoRepository;
+	}
 	@Override
 	public List<Todo> getAllTodos() {
 		 Sort sortByCreatedAtDesc = new Sort(Sort.Direction.DESC, "createdAt");
@@ -52,4 +56,7 @@ private TodoRepository todoRepository;
 	public void deleteTodo(Long id) {
 		   todoRepository.delete(id);
     }
+	public void setTodoRepository(TodoRepository todoRepository) {
+		this.todoRepository = todoRepository;
+	}
 }
